@@ -31,4 +31,16 @@ export class Post {
     },
   })
   profiles: Profile[];
+
+  @ManyToMany(() => Profile, { cascade: ['insert', 'update'] })
+  @JoinTable({
+    name: 'post_highfive_junction',
+    joinColumn: {
+      name: 'post_fk',
+    },
+    inverseJoinColumn: {
+      name: 'profile_fk',
+    },
+  })
+  profile_highfives: Profile[];
 }
