@@ -19,4 +19,16 @@ export class Post {
     referencedColumnName: 'id',
   })
   profile_fk: Profile;
+
+  @ManyToMany(() => Profile, { cascade: ['insert', 'update'] })
+  @JoinTable({
+    name: 'post_likes_junction',
+    joinColumn: {
+      name: 'post_fk',
+    },
+    inverseJoinColumn: {
+      name: 'profile_fk',
+    },
+  })
+  profiles: Profile[];
 }
